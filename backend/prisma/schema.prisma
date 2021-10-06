@@ -7,19 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model MutualAid {
-  id           Int      @id @default(autoincrement())
-  name         String
-  neighborhood String[]
-  phone        String
-  email        String
-  website      String
-  give_help    String
-  need_help    String
-  address_one  String
-  address_two  String
-  city         String
-  state        String
-  zip          String
-  tags         String[]
+model person {
+  id      BigInt @id @default(autoincrement())
+  name    String @db.VarChar(100)
+  country String @db.VarChar(50)
 }
