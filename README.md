@@ -8,6 +8,16 @@
 * Johanne Antoine
 * Suhail Singh
 
+## Build Some Understanding:
+
+- Why use Prisma:
+  - Database: work with MySQL, PostgreSQL, SQLite, Microsoft SQL Server 
+  - Work inside with any JavaScript or TypeScript environment.
+
+- What is Prisma Studio: 
+
+It's a libraryan admin UI to view and edit the data inside your database
+
 
 ## Technologies Used  
 For the backend we used Prisma as our ORM, Express.js for the backend server, and React for the frontend.
@@ -41,6 +51,7 @@ The site should be running on [http://0.0.0.0:8000](http://0.0.0.0:8000)\
 Make sure to have backend running before running the frontend.
 
 ### Backend
+
 1. Go into backend folder
 ```bash
 $ cd backend
@@ -49,10 +60,23 @@ $ cd backend
    
 3. Set up the database for prisma and import the mutual aid data (not necessary if using original database).
 ```bash
-$ npx prisma introspect
+# [Option]If you have problem running npx prisma introspect , it’s probably because you have an empty database with no table created. In this case, run npx prisma migrate dev --name init instead; this will create the tables in your database according to the prisma schema. 
+$ npx prisma migrate dev --name init
+
+# prisma:warn The prisma introspect command is deprecated. Please use prisma db pull instead.
+$ npx prisma db pull    # This will generate the schema by introspecting an existing database ==> When you need to talk to your database, use Prisma Client -- an auto-generated, type-sage query builder. ==> Which means you don't need to remember those SQL query syntax.
+
+# Let's Prisma Migrate to update prisma schama
+$ npx prisma migrate dev    # This will generate all the data table based on data obejct schema defined in ./schema.prisma
+
 $ npx prisma generate
-$ npx ts-node script.ts
+
+$ npx ts-node ./src/scripts.ts
 ```
+
+
+
+
 
 4. Start the server
 ```bash
@@ -60,3 +84,19 @@ $ npm install
 $ npm start
 ```
 The server should be running on [http://0.0.0.0:5000](http://0.0.0.0:5000)
+
+
+## Debug/Troubleshotting
+
+### Problem 1: 
+If you have problem running npx prisma introspect , it’s probably because you have an empty database with no table created. In this case, run npx prisma migrate dev --name init instead; this will create the tables in your database according to the prisma schema. 
+
+```bash
+$ npx prisma migrate dev --name init
+```
+
+
+## Reference:
+- What is your "DATABASE_URL"? ==> [Database connectors PostgreSQL](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
+- Getting start with Prisma? ==> https://www.prisma.io/docs/concepts/overview/what-is-prisma
+- 

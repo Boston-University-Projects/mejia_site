@@ -2,6 +2,12 @@
 .env.*
 .gitignore
 node_modules/
+frontend/node_modules/
 .cache
 public
 .DS_Store
+
+# Backend file
+backend/node_modules/
+backend/prisma/migrations/
+

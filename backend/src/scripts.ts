@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 async function importFromCSV() {
     var mutualaids: string[] = []
-    fs.createReadStream('mutualaid.csv')
+    fs.createReadStream('./src/mutualaid.csv')
         .pipe(csv())
         .on('data', function (data: string) {
             return mutualaids.push(data)
