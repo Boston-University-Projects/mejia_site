@@ -111,7 +111,7 @@ The server should be running on [http://0.0.0.0:5000](http://0.0.0.0:5000)
 
 ==> In line 35, we are asking it to create a table named mutualAid , but it has problem in finding its definition in the database.
 
-Here is what you wanna to do to troubleshoot the problem:
+Here is what you want to do to troubleshoot the problem:
 
 ==> First, check your database management, see if a table called “MutualAid” has created or not?
 
@@ -119,7 +119,7 @@ If it does, you should see something similar to the picture below:
 
 ![image-20211006000801113](img/image-20211006000801113.png)
 
-Otherwise, you might want to check scheme.prisma file, and see if you have a Object model that called MutualAid that is defined there. If not, ceated it as shown below:
+Otherwise, you might want to check scheme.prisma file, and see if you have an Object model that called MutualAid that is defined there. If not, ceated it as shown below:
 
 ![image-20211006000917359](img/image-20211006000917359.png)
 
@@ -135,7 +135,7 @@ This verifies the creation:
 
 ![image-20211006001252080](img/image-20211006001252080.png)
 
-And then type:
+Then type:
 
 ```bash
 $ npx prisma generate	# This will generate the correct data source client code (e.g. Prisma Client), or models that represent tables in the SQLite database, which has been defined in scripts.ts, read more here https://www.prisma.io/docs/concepts/components/prisma-schema#naming
@@ -143,20 +143,20 @@ $ npx prisma generate	# This will generate the correct data source client code (
 
 
 
-Then you can start to generate object records(dfiend in your index.ts file) into database:
+Then you can start generating object records(defined in your index.ts file) into database:
 
 ```bash
 $ npx ts-node ./src/scripts.ts
 # Read more here, https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/mongodb/querying-the-database-typescript-mongodb#write-your-first-query-with-prisma-client
 ```
 
-After all the data record had been populated, you can start running the backend with `npm start`, and then frontend. And you should see something like this at the end:
+After all the data record has been populated, you can start running the backend with `npm start`, and then frontend. And you should see something like this in the end:
 
 ![image-20211006002704090](img/image-20211006002704090.png)
 
 
 
-– If you still confuse, read more details here [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate), [Prisma schema](https://www.prisma.io/docs/concepts/components/prisma-schema#naming), [Querying the database](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/mongodb/querying-the-database-typescript-mongodb#write-your-first-query-with-prisma-client)
+– If you are still confused, read more details here [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate), [Prisma schema](https://www.prisma.io/docs/concepts/components/prisma-schema#naming), [Querying the database](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/mongodb/querying-the-database-typescript-mongodb#write-your-first-query-with-prisma-client)
 
 
 
