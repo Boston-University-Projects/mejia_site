@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import * as React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -33,6 +33,7 @@ interface FormState {
     show: boolean
 }
 
+// a array of all neighborhoods
 const neighborhoods = [
     "Boston-wide",
     "Allston",
@@ -100,14 +101,15 @@ export class Form extends React.Component<FormProps, FormState> {
     }
 
 
-    handleChange = (e: any) => {
-        e.preventDefault();
-        const { name, value } = e.target;
+    handleChange = (event: any) => {
+        // React way of preventing default event handling behavior
+        event.preventDefault();
+        const { name, value } = event.target;
         this.setState(Object.assign(this.state, {[name]: value}));
     }
     
 
-    handleSubmit = (e: any) => {
+    handleSubmit = (event: any) => {
         // Change phone number format
         let phone = "("
         phone+= this.state.phone.substring(0,3)
@@ -115,8 +117,8 @@ export class Form extends React.Component<FormProps, FormState> {
         phone+= this.state.phone.substring(3,6)
         phone+= "-"
         phone+= this.state.phone.substring(6,10)
-        console.log(phone)
-        e.preventDefault();
+        // console.log(phone)
+        event.preventDefault();
         axios({
             url: 'http://localhost:5000/location/add',
             method: 'POST',
@@ -157,13 +159,14 @@ export class Form extends React.Component<FormProps, FormState> {
         this.setState({show: true})
     }
 
+    // TODO: call backend validation function to verify reCaptcha user response
     onChange(value) {
         // let result = validateHuman(value); 
         console.log("Captcha Value:", value);
     }
 
     render() {
-        var { name, neighborhood, phone, email, website, need_help, give_help, address_one, address_two, city, state, zip } = this.state
+        const { name, neighborhood, phone, email, website, need_help, give_help, address_one, address_two, city, state, zip } = this.state
         return(
             <div className='form-container'>
                 <Button id="add-org-button" className="btn-primary" variant="light" onClick={this.handleShow}><h6>Add a Mutual Aid Organization</h6></Button>
@@ -313,7 +316,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                         value={neighborhood}
                                         onChange={this.handleChange}
                                         input={<Input id="select-multiple-chip" />}
-                                        renderValue={(selected) => (
+                                        renderValue={(selected: any) => (
                                             <div>
                                                 {selected.map((value) => (
                                                     <Chip key={value} label={value}/>
