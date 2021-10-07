@@ -93,7 +93,7 @@ The server should be running on [http://0.0.0.0:5000](http://0.0.0.0:5000)
 
 ### Problem 1: 
 
-![Untitled picture](img/Untitled picture.png)
+![Untitled picture](img/Untitled_picture.png)
 
 ==> It’s saying that it cannot find the module that you are using.
 
@@ -101,11 +101,11 @@ The server should be running on [http://0.0.0.0:5000](http://0.0.0.0:5000)
 
 ### Problem 2:
 
-![Untitled picture](img/Untitled picture1.png)
+![Untitled picture](img/Untitled_picture1.png)
 
 ==> In line 35, we are asking it to create a table named mutualAid , but it has problem in finding its definition in the database.
 
-Here is what you wanna to troubleshoot:
+Here is what you wanna to do to troubleshoot the problem:
 
 ==> First, check your database management, see if a table called “MutualAid” has created or not?
 
