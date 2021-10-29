@@ -1,10 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import '../index.css';
 import centroid from '@turf/centroid';
 import mapboxgl from 'mapbox-gl';
-import neighborhoodSource from '../../data/neighborhoods';
-import Form from './Form';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import List from '@material-ui/core/List';
@@ -14,7 +11,12 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import 'mapbox-gl/dist/mapbox-gl.css';
+
+import neighborhoodSource from '../../data/neighborhoods';
+import '../index.css';
+import Form from './Form';
 import logo from '../../images/julia1.jpg';
+import LanguageMenu from './LanguageMenu'
   
 mapboxgl.accessToken = process.env.GATSBY_MAPBOX_ACCESS_TOKEN;
 export default class Map extends React.Component {
@@ -149,6 +151,9 @@ export default class Map extends React.Component {
         return (
             <div className="main-container">
                 <div className='sidebar'>
+                    <div className='languageMenu' style={{display: "flex", flexDirection: "row"}}>
+                        <LanguageMenu />
+                    </div>
                     <div className='heading'>
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
                             <img className="logo" src={logo} style={{paddingRight: "20px"}}></img>
@@ -276,7 +281,7 @@ function Neighborhood(props) {
           </CardContent>
   
           <CardContent className="organization-links">
-            {org.tags[0] == "food" ? <p>Food</p> : false}
+            {org.tags[0] === "food" ? <p>Food</p> : false}
             {org.website !== "" ? (<a href={org.website}>Website</a>)  : false}
             {org.give_help !== "" ? (<a href={org.give_help}>Give Help</a>)  : false}
             {org.need_help !== "" ? (<a href={org.need_help}>Get Help</a>)  : false}
