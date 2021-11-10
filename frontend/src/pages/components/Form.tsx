@@ -30,7 +30,8 @@ interface FormState {
     city: string,
     state: string,
     zip: string,
-    show: boolean
+    show: boolean,
+    isHuman: boolean
 }
 
 // a array of all neighborhoods
@@ -91,13 +92,15 @@ export class Form extends React.Component<FormProps, FormState> {
             city: '',
             state: '',
             zip: '',
-            show: false
+            show: false,
+            isHuman: false
         }
         this.state = initialState;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
 
@@ -159,10 +162,18 @@ export class Form extends React.Component<FormProps, FormState> {
         this.setState({show: true})
     }
 
-    // TODO: call backend validation function to verify reCaptcha user response
     onChange(value) {
         // let result = validateHuman(value); 
         console.log("Captcha Value:", value);
+        axios.post('http://localhost:5000/form/validate', {token: value})
+            .then((res: any) => {
+                let isHuman = res.data.isHuman;
+                this.setState({isHuman: isHuman});
+            })
+            .catch((err: any) => {
+                alert('something went wrong, please try again');
+            })
+        //this.reCaptchaRef.current.reset();
     }
 
     render() {
@@ -335,11 +346,12 @@ export class Form extends React.Component<FormProps, FormState> {
                             </div> 
                         
                             <div className='captcha'>
-                                <ReCAPTCHA sitekey={process.env.SITE_KEY} onChange={this.onChange}/>
+                                <ReCAPTCHA sitekey={process.env.SITE_KEY}
+                                           onChange={this.onChange}/>
                             </div>
 
                             <div className='submit'>
-                                <button className="submit-button">Submit</button>
+                                <button className="submit-button" id="bt-submit" disabled={!this.state.isHuman}>Submit</button>
                             </div>
                         </form>
                     </Modal.Body>
