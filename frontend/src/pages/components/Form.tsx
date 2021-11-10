@@ -31,7 +31,7 @@ interface FormState {
     state: string,
     zip: string,
     show: boolean,
-    isHuman: boolean
+    submitDisabled: boolean
 }
 
 // a array of all neighborhoods
@@ -93,7 +93,7 @@ export class Form extends React.Component<FormProps, FormState> {
             state: '',
             zip: '',
             show: false,
-            isHuman: false
+            submitDisabled: true
         }
         this.state = initialState;
         this.handleChange = this.handleChange.bind(this);
@@ -168,7 +168,7 @@ export class Form extends React.Component<FormProps, FormState> {
         axios.post('http://localhost:5000/form/validate', {token: value})
             .then((res: any) => {
                 let isHuman = res.data.isHuman;
-                this.setState({isHuman: isHuman});
+                this.setState({submitDisabled: !isHuman});
             })
             .catch((err: any) => {
                 alert('something went wrong, please try again');
@@ -351,7 +351,7 @@ export class Form extends React.Component<FormProps, FormState> {
                             </div>
 
                             <div className='submit'>
-                                <button className="submit-button" id="bt-submit" disabled={!this.state.isHuman}>Submit</button>
+                                <button className="submit-button" id="bt-submit" disabled={this.state.submitDisabled}>Submit</button>
                             </div>
                         </form>
                     </Modal.Body>
