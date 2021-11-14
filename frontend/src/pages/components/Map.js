@@ -279,7 +279,7 @@ function Neighborhood(props) {
         <Card className="organization">
           <CardContent className="organization-info">
             <h5>{org.name}</h5>
-            <p>{props.neighborhood}</p>
+            <p>{t(props.neighborhood)}</p>
             {org.email !== "" ? (<p>{org.email}</p>) : false}
             {org.phone !== "" ? (<p>{org.phone}</p>)  : false}
           </CardContent>
