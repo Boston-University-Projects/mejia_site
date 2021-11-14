@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import { useTranslation } from 'react-i18next';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import neighborhoodSource from '../../data/neighborhoods';
@@ -237,6 +238,8 @@ function Neighborhoods (props) {
 }
 
 function Neighborhood(props) {
+
+    const { t } = useTranslation('translation');
     // create component state(open) and state update method(setOpen)
     const [open, setOpen] = React.useState(true);
 
@@ -248,7 +251,7 @@ function Neighborhood(props) {
     return (
       <div>
         <ListItem button onClick={handleClick} id={`neighborhood-${props.neighborhood.Name === "Boston-wide" ? 0 : props.neighborhood.Neighborhood_ID }`}>
-          <ListItemText><h5>{props.neighborhood.Name}</h5></ListItemText>
+          <ListItemText><h5>{t(props.neighborhood.Name)}</h5></ListItemText>
           {open ? <ExpandMore /> : <ExpandLess />}
         </ListItem>
   
@@ -270,6 +273,7 @@ function Neighborhood(props) {
   
   function Organization(props) {
       const org = props.org;
+      const { t } = useTranslation('translation');
   
       return(
         <Card className="organization">
@@ -282,9 +286,9 @@ function Neighborhood(props) {
   
           <CardContent className="organization-links">
             {org.tags[0] === "food" ? <p>Food</p> : false}
-            {org.website !== "" ? (<a href={org.website}>Website</a>)  : false}
-            {org.give_help !== "" ? (<a href={org.give_help}>Give Help</a>)  : false}
-            {org.need_help !== "" ? (<a href={org.need_help}>Get Help</a>)  : false}
+            {org.website !== "" ? (<a href={org.website}>{t('website')}</a>)  : false}
+            {org.give_help !== "" ? (<a href={org.give_help}>{t('give_help')}</a>)  : false}
+            {org.need_help !== "" ? (<a href={org.need_help}>{t('get_help')}</a>)  : false}
           </CardContent>
         </Card>
       )
