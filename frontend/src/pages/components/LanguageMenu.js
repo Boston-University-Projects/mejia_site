@@ -1,7 +1,8 @@
 import React from 'react';
 import cookie from 'js-cookie';
 import classNames from 'classnames';
-import i18n from 'i18next';
+
+import i18n from '../i18n/config';
 
 
 // array containing information about the languages that we support
