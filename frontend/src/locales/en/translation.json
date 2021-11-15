@@ -32,5 +32,13 @@
   "website": "Website",
   "get_help": "Get Help",
   "need_help": "Need Help",
-  "add_org": "Add a Mutual Aid Organization"
+  "add_org": "Add a Mutual Aid Organization",
+  "name": "Name",
+  "request_aid_url": "Request Aid URL",
+  "offer_aid_url": "Offer Aid URL",
+  "address": "Address",
+  "city": "City",
+  "state": "State",
+  "zip": "Zip",
+  "neighborhood": "Neighborhood"
 }

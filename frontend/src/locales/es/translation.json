@@ -32,5 +32,13 @@
   "website": "Página web",
   "get_help": "Dar Soporte",
   "give_help": "Solicitar soporte",
-  "add_org": "Agregar  Organización de ayuda mutua"
+  "add_org": "Agregar  Organización de ayuda mutua",
+  "name": "Nombre",
+  "request_aid_url": "Enlace de solicitar ayuda",
+  "offer_aid_url": "Enlace para ofrecer ayuda",
+  "address": "Dirección",
+  "city": "Ciudad",
+  "state": "Estado",
+  "zip": "Código Postal",
+  "neighborhood": "El Vecindario"
 }

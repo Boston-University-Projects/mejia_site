@@ -10,11 +10,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
+import { withTranslation } from 'react-i18next';
+
 import './form.css';
 
 // Defining types for props and state
 interface FormProps {
     parentCallback: Function,
+    t: Function
 }
 
 interface FormState {
@@ -166,10 +169,11 @@ export class Form extends React.Component<FormProps, FormState> {
     }
 
     render() {
-        const { name, neighborhood, phone, email, website, need_help, give_help, address_one, address_two, city, state, zip } = this.state
+        const { name, neighborhood, phone, email, website, need_help, give_help, address_one, address_two, city, state, zip } = this.state;
+        const { t } = this.props;
         return(
             <div className='form-container'>
-                <Button id="add-org-button" className="btn-primary" variant="light" onClick={this.handleShow}><h6>Add a Mutual Aid Organization</h6></Button>
+                <Button id="add-org-button" className="btn-primary" variant="light" onClick={this.handleShow}><h6>{t('add_org')}</h6></Button>
                 <Modal className="" show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Add Organization</Modal.Title>
@@ -181,7 +185,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="name"
                                     className="input-box"
                                     name="name"
-                                    label="Name"
+                                    label={t("name")}
                                     value={name}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -193,7 +197,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="email"
                                     className="input-box"
                                     name="email"
-                                    label="Email"
+                                    label={t('email')}
                                     value={email}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -202,7 +206,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="phone"
                                     name="phone"
                                     className="input-box"
-                                    label="Phone"
+                                    label={t('phone')}
                                     value={phone}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -214,7 +218,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="website"
                                     className="input-box"
                                     name="website"
-                                    label="Website"
+                                    label={t('website')}
                                     value={website}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -226,7 +230,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="need-help"
                                     className="input-box"
                                     name="need_help"
-                                    label="Request Aid Form URL"
+                                    label={t('request_aid_url')}
                                     value={need_help}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -238,7 +242,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="give-help"
                                     className="input-box"
                                     name="give_help"
-                                    label="Offer Aid Form URL"
+                                    label={t('offer_aid_url')}
                                     value={give_help}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -250,7 +254,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="address_one"
                                     className="input-box"
                                     name="address_one"
-                                    label="Address 1"
+                                    label={`${t('address')} 1`}
                                     value={address_one}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -262,7 +266,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="address_two"
                                     className="input-box"
                                     name="address_two"
-                                    label="Address 2"
+                                    label={`${t('address')} 2`}
                                     value={address_two}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -274,7 +278,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="city"
                                     className="input-box"
                                     name="city"
-                                    label="City"
+                                    label={t('city')}
                                     value={city}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -286,7 +290,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="state"
                                     className="input-box"
                                     name="state"
-                                    label="State"
+                                    label={t('state')}
                                     value={state}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -298,7 +302,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     id="zip"
                                     className="input-box"
                                     name="zip"
-                                    label="Zip"
+                                    label={t('zip')}
                                     value={zip}
                                     variant="outlined"
                                     onChange={this.handleChange} 
@@ -307,7 +311,7 @@ export class Form extends React.Component<FormProps, FormState> {
 
                             <div>
                                 <FormControl>
-                                    <InputLabel id="demo-mutiple-chip-label">Neighborhood</InputLabel>
+                                    <InputLabel id="demo-mutiple-chip-label">{t('neighborhood')}</InputLabel>
                                     <Select
                                         labelId="demo-mutiple-chip-label"
                                         id="demo-mutiple-chip"
@@ -319,7 +323,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                         renderValue={(selected: any) => (
                                             <div>
                                                 {selected.map((value) => (
-                                                    <Chip key={value} label={value}/>
+                                                    <Chip key={value} label={t(value)}/>
                                                 ))}
                                             </div>
                                         )}
@@ -327,7 +331,7 @@ export class Form extends React.Component<FormProps, FormState> {
                                     >
                                         {neighborhoods.map((n) => (
                                             <MenuItem key={n} value={n} >
-                                                {n}
+                                                {t(n)}
                                             </MenuItem>
                                         ))}
                                     </Select>
@@ -349,4 +353,4 @@ export class Form extends React.Component<FormProps, FormState> {
     }
 }
 
-export default Form;
+export default withTranslation('translation')(Form);
