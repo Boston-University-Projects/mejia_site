@@ -79,6 +79,8 @@ const MenuProps = {
   },
 };
 
+const backend_url = process.env.BACKEND_URL;
+
 export class Form extends React.Component<FormProps, FormState> {
     constructor(props: FormProps) {
         super(props);
@@ -126,7 +128,7 @@ export class Form extends React.Component<FormProps, FormState> {
         // console.log(phone)
         event.preventDefault();
         axios({
-            url: 'http://localhost:5000/location/add',
+            url: backend_url + '/location/add',
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -168,7 +170,7 @@ export class Form extends React.Component<FormProps, FormState> {
     onChange(value) {
         // let result = validateHuman(value); 
         console.log("Captcha Value:", value);
-        axios.post('http://localhost:5000/form/validate', {token: value})
+        axios.post(backend_url + '/form/validate', {token: value})
             .then((res: any) => {
                 let isHuman = res.data.isHuman;
                 this.setState({submitDisabled: !isHuman});
