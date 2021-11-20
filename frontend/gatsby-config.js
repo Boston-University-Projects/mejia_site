@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "mejia_site",
   siteMetadata: {
     title: "Mutual-Aid-Site",
     siteUrl: "https://cnblogs.xgqfrms.xyz",
